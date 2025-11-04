@@ -13,11 +13,11 @@
 
 This assignment is to implement Mobs in the style of Minecraft.
 It is not necessary to be familiar with the video game Minecraft.
-It is useful to understand what a Mob is:[(Minecraft Wiki)](https://minecraft.fandom.com/wiki/Mob)
-
-## Instructions
+It is useful to understand what a Mob is using the [(Minecraft Wiki)](https://minecraft.fandom.com/wiki/Mob)
 
 You will get practice with interfaces and generic types by implementing [spawners](https://minecraft.fandom.com/wiki/Spawner). Specifically, you will write a generic type `Spawner[T]`, which creates an entity that spawns (creates) entities of type `T` until the spawner is destroyed. This will enable you to create a `ZombieSpawner` and even a `ZombieSpawnerSpawner`.
+
+## Instructions
 
 Feel free to change the `NOISINESS` constant in `mob.py` if the noises get annoying.
 
