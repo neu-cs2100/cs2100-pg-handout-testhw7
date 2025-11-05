@@ -34,12 +34,11 @@ can display a spider spawner._
 ### How long did the assignment take?
 
 _Rather than giving a range, if you are unsure, give the average of the range._
-[1 point]
 
 ### What resources did you use?
 
 _Please give specific URLs (not "Stack Overflow" or "Google") and state which
-ones were particularly helpful._ [2 points]
+ones were particularly helpful._
 
 ## Reflections
 
@@ -52,5 +51,4 @@ assignment, including answers to all of these questions:_
 
 _Constructive and actionable suggestions for improving assignments, office
 hours, and lecture are always welcome._
-[4 points]
 
