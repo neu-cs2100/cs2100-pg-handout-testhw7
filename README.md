@@ -38,6 +38,8 @@ adjacent cell randomly. For example, it is fine if it always chooses the
 position to the left if it is available. You do need to include the documentation above
 your code.
 
+Each cell has eight adjacent cells: top, top-right, right, bottom-right, bottom, bottom-left, left, and top-left.
+
 UML diagram at this point:
 
 <img width="458" height="467" alt="added one method" src="https://github.com/user-attachments/assets/dd19d085-d911-4423-ba8c-ff3e4f80b58b" />
@@ -61,12 +63,13 @@ learn more if you keep this big picture in mind when doing each of the following
 3. Copy over the signature of the `take_damage()` method and mark it as abstract. 
    That means that subclasses will have to provide an implementation of the method.
 4. Modify `LivingEntity` to indicate that it implements the `Damageable`
-   interface.
+   interface. To make sure the constructor's call to `super().__init__()` still works,
+   make sure `ABC` is listed last in the superclasses.
 5. We want it to be possible to attack anything that is `Damageable`, so, in
    `LivingEntity`, change the type of the `attack()` parameter to `Damageable`.
    You will also need to change the reference to `victim.type` because
-   `Damageable` objects do not have a `type`. You may use the `__str__()` or
-   `__repr__()` if the object is not a `LivingEntity`.
+   `Damageable` objects do not have a `type`. You may use the `__str__()` if the 
+   object is not a `LivingEntity`.
 6. Make the corresponding change to the `attack()` parameter in `Mob`.
 7. Make sure your code still runs and that living entities can still take 
    damage and be killed.
@@ -119,13 +122,13 @@ UML diagram at this point:
 In Problem 3, you created indestructible spider spawners. In this problem, you
 will make them `Damageable`.
 
-1. In `SpiderSpawner`, add a attribute `__hardness`, which should be
+1. In `SpiderSpawner`, add an attribute `_hardness`, which should be
    an `int` of your choice greater than 0, such as 6.
 2. Modify the `SpiderSpawner` class header to indicate that it will implement
    the `Damageable` interface.
 3. Implement the method `take_damage()`. (You might want to refer to
    the implementation in `LivingEntity` for reference.) It should print appropriate
-   messages and reduce the `__hardness` value. When `__hardness` reaches
+   messages and reduce the `_hardness` value. When `_hardness` reaches
    0, it should call an appropriately named method that you create that
    prints that the spawner has been destroyed and removes it from the game.
    The method should be named starting with an underscore, and does not
@@ -175,7 +178,8 @@ UML diagram at this point:
 For this part, you will create a zombie spawner, which will take very little
 code, thanks to the work you did making `Spawner` generic.
 
-1. Create a new class `ZombieSpawner` that is a subclass of `Spawner[Zombie]`.
+1. In `spawner.py`, create a new class `ZombieSpawner` that is a subclass 
+   of `Spawner[Zombie]`.
    The new class constructor should take no parameters, but it should
    pass the necessary arguments to the `Spawner[Zombie]` constructor.
    These are:
@@ -202,8 +206,8 @@ UML diagram at this point:
 
 ### Problem 7: Adding another spawner
 
-That was a lot work, but now it is easy to add other spawners. Create a
-spawner for an existing (or new) `Mob`. You can get a picture of a mob from
+That was a lot work, but now it is easy to add other spawners. In `spawner.py`, create 
+a spawner for an existing (or new) `Mob`. You can get a picture of a mob from
 the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Mob) and
 [convert it from webpng to a 64x64 png online](https://cloudconvert.com/webp-to-png).
 You can pass `None` for the sound file name.
@@ -215,6 +219,12 @@ Add your new `Spawner` subclass to the game and make sure it works.
 You should now be able to create a `ZombieSpawnerSpawner`: a spawner that
 creates instances of `ZombieSpawner`. This should take only a few lines of code.
 Test that it works.
+
+### Which tests are required?
+
+Most of the code in this assignment was tested by running it. The only tests which are
+graded in this assignment are the ones for `take_damage()` in the `LivingEntity` 
+and `Spawner` classes.
 
 ## Tips
 
