@@ -1,8 +1,11 @@
-from mob import Mob, Behavior
+"""Class representing a sheep, a passive mob"""
+
+from src.mob import Mob, Behavior
+
 
 class Sheep(Mob):
     """A sheep, a passive Mob."""
-    
+
     def __init__(self) -> None:
         super().__init__(
             type_name="Sheep",
@@ -11,5 +14,5 @@ class Sheep(Mob):
             attack_strength=0,
             image_file_name="Sheep.png",
             sound_file_name="sheep.mp3",
-            subtitle="Sheep baahs"
+            subtitle="Sheep baahs",
         )

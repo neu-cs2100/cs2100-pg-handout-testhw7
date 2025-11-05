@@ -1,0 +1,11 @@
+[MASTER]
+# Add pygame to extension-pkg-whitelist to avoid no-member warnings
+extension-pkg-whitelist=pygame
+
+[MESSAGES CONTROL]
+# Disable specific warnings for known pygame issues and import placement
+disable=no-member,import-outside-toplevel
+
+[TYPECHECK]
+# List of module names for which member attributes should not be checked
+ignored-modules=pygame

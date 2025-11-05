@@ -3,6 +3,8 @@
 
 # Homework 7
 
+This is a modified version of an assignment designed by Prof. Ellen Spertus.
+
 ## Learning Outcomes
 
 - Practice with abstract classes and interfaces
@@ -19,10 +21,13 @@ You will get practice with interfaces and generic types by implementing [spawner
 
 ## Instructions
 
+You will need to `pip3 install pygame` to be able to run the code.
+
+The initial code should be runnable from `main.py`. (It takes a couple seconds to start.)
+It may be useful to run it to see what it does. Your arrow keys control the person's face.
+
 Feel free to change the `NOISINESS` constant in `mob.py` if the noises get annoying.
 
-The initial code should be runnable from `main.py`.
-It may be useful to run it to see what it does.
 
 ### Problem 1: Selecting an adjacent empty cell
 
@@ -34,6 +39,7 @@ position to the left if it is available. You do need to include the documentatio
 your code.
 
 UML diagram at this point:
+
 <img width="458" height="467" alt="added one method" src="https://github.com/user-attachments/assets/dd19d085-d911-4423-ba8c-ff3e4f80b58b" />
 
 ### Problem 2: Refactoring
@@ -52,32 +58,34 @@ learn more if you keep this big picture in mind when doing each of the following
    Remove all references to properties, since they will not necessarily apply. 
    Replace the word `hearts` with `units`, since not all entities have hearts or 
    status.
-3. Copy over the signature of the method and mark it as abstract. That means
-   that subclasses will have to provide an implementation of the method.
+3. Copy over the signature of the `take_damage()` method and mark it as abstract. 
+   That means that subclasses will have to provide an implementation of the method.
 4. Modify `LivingEntity` to indicate that it implements the `Damageable`
-   interface. When you override or implement a method declared elsewhere, you 
-   are not required to provide documentation.
+   interface.
 5. We want it to be possible to attack anything that is `Damageable`, so, in
    `LivingEntity`, change the type of the `attack()` parameter to `Damageable`.
    You will also need to change the reference to `victim.type` because
-   `Damageable` objects do not have a `type`.
+   `Damageable` objects do not have a `type`. You may use the `__str__()` or
+   `__repr__()` if the object is not a `LivingEntity`.
 6. Make the corresponding change to the `attack()` parameter in `Mob`.
 7. Make sure your code still runs and that living entities can still take 
    damage and be killed.
 
 UML diagram at this point:
+
 <img width="458" height="467" alt="add Damageable interface" src="https://github.com/user-attachments/assets/b8f1faf1-82b6-40b8-80aa-a2675a92e6a6" />
 
 
 ### Problem 3: Creating a spider spawner
 
 You will create a spider [spawner](https://minecraft.fandom.com/wiki/Monster_Spawner)
-that randomly creates spiders that appear in empty adjacent cells.
+which is a non-living entity that randomly creates spiders that appear in empty 
+adjacent cells.
 
-1. Create a class `SpiderSpawner` that is a subclass of `Entity`. Its 
-   constructor should have no parameters. Use the provided `Spawner` image (`SpawnerOnSand.png`). Don't forget to add documentation (a brief 
-   description of the class).
-2. Create a private method `_spawn_if_space()` that checks for an adjacent empty
+1. In `entity.py`, create a class `SpiderSpawner` that is a subclass of `Entity`. Its 
+   constructor should have no parameters. Use the provided `Spawner` image (`SpawnerOnSand.png`). 
+   Don't forget to add documentation.
+2. Create a method `_spawn_if_space()` that checks for an adjacent empty
    cell using `select_adjacent_empty_cell()`. If it finds one, it constructs a
    `Spider` and places it at the returned `Position`.
 3. Add a property `spawn_probability`, which should be a `float` in the range 0-1, 
@@ -102,6 +110,7 @@ that randomly creates spiders that appear in empty adjacent cells.
    problem.
 
 UML diagram at this point:
+
 <img width="555" height="229" alt="add SpiderSpawner" src="https://github.com/user-attachments/assets/1c665102-1ae3-4730-aa7c-9f193be0c1f6" />
 
 
@@ -110,25 +119,26 @@ UML diagram at this point:
 In Problem 3, you created indestructible spider spawners. In this problem, you
 will make them `Damageable`.
 
-1. In `SpiderSpawner`, add a private attribute `__hardness`, which should be
+1. In `SpiderSpawner`, add a attribute `__hardness`, which should be
    an `int` of your choice greater than 0, such as 6.
 2. Modify the `SpiderSpawner` class header to indicate that it will implement
    the `Damageable` interface.
 3. Implement the method `take_damage()`. (You might want to refer to
    the implementation in `LivingEntity` for reference.) It should print appropriate
    messages and reduce the `__hardness` value. When `__hardness` reaches
-   0, it should call an appropriately named private method that you create that
+   0, it should call an appropriately named method that you create that
    prints that the spawner has been destroyed and removes it from the game.
-   The private method should be named starting with an underscore, and does not
+   The method should be named starting with an underscore, and does not
    require documentation.
 4. Right now, the player attacks only aggressive mobs that are nearby. Change it
-   so it also attacks all`Damageable` entities. Make sure to exclude the player
+   so it also attacks all `Damageable` entities. Make sure to exclude the player
    or it will attack itself! Also make sure the names of your methods are
    accurate and proper style (verbs).
 5. **Test your code to make sure the player can destroy a spider spawner and
    save the transcript to `Summary.md`.**
 
 UML diagram at this point:
+
 <img width="507" height="242" alt="SpiderSpawner is damageable" src="https://github.com/user-attachments/assets/168608fe-ec76-4355-9483-828a9dee11fa" />
 
 
@@ -156,6 +166,7 @@ able to construct spawners for different types of mobs. Do not delete
    needed.
 
 UML diagram at this point:
+
 <img width="503" height="324" alt="Generic Spawner" src="https://github.com/user-attachments/assets/ae124e6a-907b-477d-9bc6-b274ba1d4d3b" />
 
 
@@ -185,6 +196,7 @@ code, thanks to the work you did making `Spawner` generic.
    them back.
 
 UML diagram at this point:
+
 <img width="481" height="329" alt="ZombieSpawner" src="https://github.com/user-attachments/assets/b0ed35de-1935-4b1a-a91e-4af0091b9250" />
 
 

@@ -1,9 +1,11 @@
-from mob import Mob, Behavior
+""" "Module for the Spider class, a hostile Mob."""
+
+from src.mob import Mob, Behavior
 
 
 class Spider(Mob):
     """A spider, a hostile Mob."""
-    
+
     def __init__(self) -> None:
         super().__init__(
             type_name="Spider",
@@ -12,5 +14,5 @@ class Spider(Mob):
             attack_strength=3,
             image_file_name="Spider.png",
             sound_file_name="spider.mp3",
-            subtitle="Spider hisses"
+            subtitle="Spider hisses",
         )

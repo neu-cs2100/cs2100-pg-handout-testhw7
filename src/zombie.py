@@ -1,8 +1,11 @@
-from mob import Mob, Behavior
+"""Module for the Zombie class."""
+
+from src.mob import Mob, Behavior
+
 
 class Zombie(Mob):
     """A zombie, a hostile Mob."""
-    
+
     def __init__(self) -> None:
         super().__init__(
             type_name="Zombie",
@@ -11,5 +14,5 @@ class Zombie(Mob):
             attack_strength=5,
             image_file_name="Zombie.png",
             sound_file_name="zombie.mp3",
-            subtitle="Zombie groans"
+            subtitle="Zombie groans",
         )
